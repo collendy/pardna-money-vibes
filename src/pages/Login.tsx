@@ -1,13 +1,73 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/components/ui/use-toast";
 
 const Login = () => {
+  const { signIn, signUp } = useAuth();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const formData = new FormData(e.currentTarget);
+    const identifier = formData.get("identifier") as string;
+    const password = formData.get("password") as string;
+
+    try {
+      const isEmail = identifier.includes("@");
+      await signIn({
+        [isEmail ? "email" : "phone"]: identifier,
+        password,
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("fullname") as string;
+    const identifier = formData.get("identifier") as string;
+    const password = formData.get("password") as string;
+
+    try {
+      const isEmail = identifier.includes("@");
+      await signUp({
+        name,
+        [isEmail ? "email" : "phone"]: identifier,
+        password,
+      });
+      toast({
+        title: "Success",
+        description: "Account created successfully!",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
       <div className="w-full max-w-md">
@@ -33,11 +93,13 @@ const Login = () => {
                 <p className="text-smarterpartner-secondary-text">Login to your account</p>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
+                <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email or Phone</Label>
+                    <Label htmlFor="identifier">Email or Phone</Label>
                     <Input 
-                      id="email" 
+                      id="identifier"
+                      name="identifier"
+                      required
                       placeholder="Enter your email or phone number" 
                       className="rounded-xl"
                     />
@@ -53,17 +115,23 @@ const Login = () => {
                       </Link>
                     </div>
                     <Input 
-                      id="password" 
-                      type="password" 
+                      id="password"
+                      name="password"
+                      type="password"
+                      required
                       placeholder="••••••••" 
                       className="rounded-xl"
                     />
                   </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full btn-primary py-6"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Loading..." : "Login"}
+                  </Button>
                 </form>
               </CardContent>
-              <CardFooter className="flex flex-col">
-                <Button className="w-full btn-primary py-6">Login</Button>
-              </CardFooter>
             </Card>
           </TabsContent>
 
@@ -74,45 +142,49 @@ const Login = () => {
                 <p className="text-smarterpartner-secondary-text">Join our savings community</p>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
+                <form onSubmit={handleSignUp} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="fullname">Full Name</Label>
                     <Input 
-                      id="fullname" 
+                      id="fullname"
+                      name="fullname"
+                      required
                       placeholder="Enter your full name" 
                       className="rounded-xl"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
+                    <Label htmlFor="signup-identifier">Email or Phone Number</Label>
                     <Input 
-                      id="phone" 
-                      placeholder="Enter your phone number" 
+                      id="signup-identifier"
+                      name="identifier"
+                      required
+                      placeholder="Enter your email or phone number" 
                       className="rounded-xl"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email (Optional)</Label>
+                    <Label htmlFor="signup-password">Password</Label>
                     <Input 
-                      id="email" 
-                      placeholder="Enter your email address" 
-                      className="rounded-xl"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="newpassword">Password</Label>
-                    <Input 
-                      id="newpassword" 
-                      type="password" 
+                      id="signup-password"
+                      name="password"
+                      type="password"
+                      required
                       placeholder="Create a password" 
                       className="rounded-xl"
                     />
                   </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full btn-primary py-6"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Creating Account..." : "Create Account"}
+                  </Button>
                 </form>
               </CardContent>
-              <CardFooter className="flex flex-col">
-                <Button className="w-full btn-primary py-6">Create Account</Button>
-                <p className="mt-4 text-sm text-center text-smarterpartner-secondary-text">
+              <CardFooter>
+                <p className="mt-4 text-sm text-center text-smarterpartner-secondary-text w-full">
                   By signing up, you agree to our{" "}
                   <Link to="/terms" className="text-smarterpartner-purple hover:underline">
                     Terms of Service
