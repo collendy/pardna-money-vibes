@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,7 +11,8 @@ import CreatePardna from "./pages/CreatePardna";
 import AppLayout from "./components/layout/AppLayout";
 import SplashScreen from "./pages/SplashScreen";
 import Login from "./pages/Login";
-import { useAuth } from "./contexts/AuthContext";
+import ForgotPassword from "./components/auth/ForgotPassword";
+import { useAuth } from "@/contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +38,7 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/splash" element={<SplashScreen />} />
     <Route path="/login" element={<AuthenticatedRoute><Login /></AuthenticatedRoute>} />
+    <Route path="/forgot-password" element={<AuthenticatedRoute><ForgotPassword /></AuthenticatedRoute>} />
     <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
       <Route path="/" element={<Index />} />
       <Route path="/groups/:id" element={<GroupDetail />} />

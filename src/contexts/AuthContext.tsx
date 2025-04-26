@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useEffect, useState } from "react";
 import { User, Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,7 +10,7 @@ interface AuthContextType {
   signIn: (credentials: { email?: string; phone?: string; password: string }) => Promise<void>;
   signUp: (credentials: { email?: string; phone?: string; password: string; name: string }) => Promise<void>;
   signOut: () => Promise<void>;
-  resetPassword: (email: string) => Promise<void>;
+  resetPassword: (identifier: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -110,8 +109,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     navigate("/login");
   };
 
-  const resetPassword = async (email: string) => {
-    const { error } = await supabase.auth.resetPasswordForEmail(email);
+  const resetPassword = async (identifier: string) => {
+    let result;
+    
+    if (identifier.includes("@")) {
+      // Reset password with email
+      result = await supabase.auth.resetPasswordForEmail(identifier);
+    } else {
+      // Reset password with phone
+      result = await supabase.auth.resetPasswordForPhone(identifier);
+    }
+    
+    const { error } = result;
     if (error) throw error;
   };
 
