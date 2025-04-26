@@ -63,16 +63,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Jamaican-inspired colors
-				jamaica: {
-					black: '#000000',
-					green: '#009B77',
-					gold: '#FDB813',
-					red: '#FF4136',
-					'light-green': '#7FD1AE',
-					'light-gold': '#FFE7A0',
-					'bg-light': '#FEF7E2',
-					'accent-green': '#00664E'
+				// SmarterPartner color palette
+				smarterpartner: {
+					purple: '#8200BE',
+					gold: '#FED100',
+					green: '#008231',
+					background: '#FFFFFF',
+					text: '#000000',
+					'secondary-text': '#343333',
 				}
 			},
 			borderRadius: {
@@ -117,7 +115,10 @@ export default {
 				'confetti': 'confetti 1s ease-out forwards'
 			},
 			backgroundImage: {
-				'gradient-jamaica': 'linear-gradient(45deg, #009B77, #FDB813)'
+				'gradient-smarterpartner': 'linear-gradient(45deg, #8200BE, #FED100)'
+			},
+			fontFamily: {
+				'poppins': ['Poppins', 'sans-serif'],
 			}
 		}
 	},

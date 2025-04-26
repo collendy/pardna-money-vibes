@@ -35,8 +35,8 @@ const PardnaCard = ({
       <Card className="overflow-hidden hover:shadow-md transition-shadow">
         <div className={cn(
           "h-2",
-          status === "active" ? "bg-jamaica-green" : 
-          status === "pending" ? "bg-jamaica-gold" : "bg-gray-300"
+          status === "active" ? "bg-smarterpartner-purple" : 
+          status === "pending" ? "bg-smarterpartner-gold" : "bg-gray-300"
         )} />
         <CardContent className="p-4">
           <div className="flex justify-between items-start mb-3">
@@ -48,8 +48,8 @@ const PardnaCard = ({
               </div>
             </div>
             <Badge className={cn(
-              status === "active" ? "bg-jamaica-green" : 
-              status === "pending" ? "bg-jamaica-gold" : "bg-gray-300"
+              status === "active" ? "bg-smarterpartner-purple" : 
+              status === "pending" ? "bg-smarterpartner-gold text-black" : "bg-gray-300"
             )}>
               {status === "active" ? "Active" : 
                status === "pending" ? "Pending" : "Completed"}
@@ -58,7 +58,7 @@ const PardnaCard = ({
           
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center">
-              <DollarSign className="h-4 w-4 text-jamaica-green mr-1" />
+              <DollarSign className="h-4 w-4 text-smarterpartner-purple mr-1" />
               <span className="font-semibold">${amount}</span>
               <span className="text-sm text-gray-500 ml-1">{frequency}</span>
             </div>

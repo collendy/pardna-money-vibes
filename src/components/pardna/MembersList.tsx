@@ -26,8 +26,8 @@ const MembersList = ({ members, currentPosition }: MembersListProps) => {
           key={member.id}
           className={cn(
             "flex items-center justify-between p-3 rounded-lg border",
-            member.position === currentPosition ? "bg-jamaica-light-green border-jamaica-green" : "",
-            !member.hasPaid && member.position <= currentPosition ? "bg-jamaica-light-gold border-jamaica-gold" : ""
+            member.position === currentPosition ? "bg-smarterpartner-purple/10 border-smarterpartner-purple" : "",
+            !member.hasPaid && member.position <= currentPosition ? "bg-smarterpartner-gold/10 border-smarterpartner-gold" : ""
           )}
         >
           <div className="flex items-center gap-3">
@@ -41,7 +41,7 @@ const MembersList = ({ members, currentPosition }: MembersListProps) => {
               <p className="font-medium flex items-center">
                 {member.name}
                 {member.isAdmin && (
-                  <span className="ml-2 text-xs bg-jamaica-green text-white px-2 py-0.5 rounded-full">
+                  <span className="ml-2 text-xs bg-smarterpartner-purple text-white px-2 py-0.5 rounded-full">
                     Admin
                   </span>
                 )}
@@ -53,7 +53,7 @@ const MembersList = ({ members, currentPosition }: MembersListProps) => {
           </div>
           <div className="flex items-center">
             {member.hasPaid ? (
-              <span className="flex items-center text-jamaica-green text-sm">
+              <span className="flex items-center text-smarterpartner-green text-sm">
                 <Check className="w-4 h-4 mr-1" />
                 Paid
               </span>

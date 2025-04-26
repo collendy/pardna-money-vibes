@@ -50,23 +50,24 @@ const CreatePardna = () => {
 
   return (
     <div className="py-6 px-4">
-      <h1 className="text-2xl font-bold mb-6">Create Your Pardna</h1>
+      <h1 className="text-2xl font-bold mb-6">Create Your Partner</h1>
       
       <form onSubmit={handleSubmit}>
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>Pardna Details</CardTitle>
+            <CardTitle>Partner Details</CardTitle>
             <CardDescription>Set up your group savings circle</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Pardna Name</Label>
+              <Label htmlFor="name">Partner Name</Label>
               <Input 
                 id="name" 
                 placeholder="E.g., Family Savings, Friend Circle"
                 value={formState.name}
                 onChange={(e) => handleChange("name", e.target.value)}
                 required
+                className="rounded-xl"
               />
             </div>
             
@@ -74,10 +75,10 @@ const CreatePardna = () => {
               <Label htmlFor="description">Description (Optional)</Label>
               <Textarea 
                 id="description" 
-                placeholder="What's this Pardna for?"
+                placeholder="What's this Partner group for?"
                 value={formState.description}
                 onChange={(e) => handleChange("description", e.target.value)}
-                className="resize-none"
+                className="resize-none rounded-xl"
               />
             </div>
           </CardContent>
@@ -101,6 +102,7 @@ const CreatePardna = () => {
                   value={formState.amount}
                   onChange={(e) => handleChange("amount", Number(e.target.value))}
                   required
+                  className="rounded-xl"
                 />
               </div>
             </div>
@@ -126,7 +128,7 @@ const CreatePardna = () => {
                 value={formState.frequency}
                 onValueChange={(value) => handleChange("frequency", value)}
               >
-                <SelectTrigger>
+                <SelectTrigger className="rounded-xl">
                   <SelectValue placeholder="Select frequency" />
                 </SelectTrigger>
                 <SelectContent>
@@ -143,7 +145,7 @@ const CreatePardna = () => {
                 value={String(formState.duration)}
                 onValueChange={(value) => handleChange("duration", Number(value))}
               >
-                <SelectTrigger>
+                <SelectTrigger className="rounded-xl">
                   <SelectValue placeholder="Select duration" />
                 </SelectTrigger>
                 <SelectContent>
@@ -177,16 +179,16 @@ const CreatePardna = () => {
               </div>
               <div className="flex justify-between py-2">
                 <span className="font-bold">Each member receives:</span>
-                <span className="font-bold text-jamaica-green">${totalAmount}</span>
+                <span className="font-bold text-smarterpartner-purple">${totalAmount}</span>
               </div>
             </div>
           </CardContent>
           <CardFooter>
             <Button 
               type="submit" 
-              className="w-full bg-jamaica-green hover:bg-jamaica-accent-green"
+              className="w-full rounded-xl bg-smarterpartner-purple hover:bg-smarterpartner-purple/90"
             >
-              Create Pardna
+              Create Partner
             </Button>
           </CardFooter>
         </Card>

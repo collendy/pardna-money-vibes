@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import GroupDetail from "./pages/GroupDetail";
 import CreatePardna from "./pages/CreatePardna";
 import AppLayout from "./components/layout/AppLayout";
+import SplashScreen from "./pages/SplashScreen";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +21,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          <Route path="/splash" element={<SplashScreen />} />
+          <Route path="/login" element={<Login />} />
           <Route element={<AppLayout />}>
             <Route path="/" element={<Index />} />
             <Route path="/groups/:id" element={<GroupDetail />} />

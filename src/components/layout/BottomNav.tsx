@@ -26,8 +26,8 @@ const BottomNav = () => {
               className={cn(
                 "flex flex-col items-center justify-center w-full h-full transition-colors",
                 isActive
-                  ? "text-jamaica-green"
-                  : "text-gray-500 hover:text-jamaica-green"
+                  ? "text-smarterpartner-purple"
+                  : "text-gray-500 hover:text-smarterpartner-purple"
               )}
             >
               <item.icon className="h-5 w-5" />

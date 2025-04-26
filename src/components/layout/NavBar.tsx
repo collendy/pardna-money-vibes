@@ -10,10 +10,14 @@ const NavBar = () => {
     <header className="fixed top-0 left-0 right-0 h-16 z-50 bg-white shadow-sm">
       <div className="container max-w-md h-full mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <div className="bg-gradient-jamaica w-8 h-8 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-sm">PD</span>
+          <div className="w-8 h-8 flex items-center justify-center">
+            <img 
+              src="/lovable-uploads/a944be1f-b473-403c-bfde-5601a2ab7f8b.png" 
+              alt="SmarterPartner Logo" 
+              className="w-full h-full"
+            />
           </div>
-          <span className="font-bold text-lg text-jamaica-green">Pardna</span>
+          <span className="font-bold text-lg text-smarterpartner-purple">SmarterPartner</span>
         </Link>
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon" className="relative">
@@ -22,7 +26,7 @@ const NavBar = () => {
           </Button>
           <Avatar className="h-8 w-8">
             <AvatarImage src="" />
-            <AvatarFallback className="bg-jamaica-gold text-jamaica-black text-xs">
+            <AvatarFallback className="bg-smarterpartner-gold text-smarterpartner-purple text-xs">
               JM
             </AvatarFallback>
           </Avatar>

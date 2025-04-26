@@ -18,7 +18,7 @@ import CelebrationEffect from "@/components/pardna/CelebrationEffect";
 // Mock group data
 const groupData = {
   id: "1",
-  name: "Family Pardna",
+  name: "Family Partner",
   description: "Our family savings group for emergencies and special occasions.",
   amount: 100,
   frequency: "Weekly",
@@ -42,8 +42,8 @@ const groupData = {
   ],
   messages: [
     { id: "1", sender: "Marcus Brown", message: "Just sent my payment for this week!", time: "2 hours ago" },
-    { id: "2", sender: "Jasmine Morris", message: "Big up, Marcus! Right on time as always.", time: "1 hour ago" },
-    { id: "3", sender: "Keisha Williams", message: "Mi will transfer my funds tomorrow morning.", time: "30 minutes ago" },
+    { id: "2", sender: "Jasmine Morris", message: "Excellent! Right on time as always.", time: "1 hour ago" },
+    { id: "3", sender: "Keisha Williams", message: "I will transfer my funds tomorrow morning.", time: "30 minutes ago" },
   ]
 };
 
@@ -66,28 +66,28 @@ const GroupDetail = () => {
         
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="flex items-center">
-            <DollarSign className="text-jamaica-green w-5 h-5 mr-2" />
+            <DollarSign className="text-smarterpartner-purple w-5 h-5 mr-2" />
             <div>
               <p className="text-sm text-gray-500">Contribution</p>
               <p className="font-bold">${groupData.amount} {groupData.frequency}</p>
             </div>
           </div>
           <div className="flex items-center">
-            <Users className="text-jamaica-green w-5 h-5 mr-2" />
+            <Users className="text-smarterpartner-purple w-5 h-5 mr-2" />
             <div>
               <p className="text-sm text-gray-500">Members</p>
               <p className="font-bold">{groupData.members.length} people</p>
             </div>
           </div>
           <div className="flex items-center">
-            <Calendar className="text-jamaica-green w-5 h-5 mr-2" />
+            <Calendar className="text-smarterpartner-purple w-5 h-5 mr-2" />
             <div>
               <p className="text-sm text-gray-500">Start Date</p>
               <p className="font-bold">{groupData.startDate}</p>
             </div>
           </div>
           <div className="flex items-center">
-            <Calendar className="text-jamaica-green w-5 h-5 mr-2" />
+            <Calendar className="text-smarterpartner-purple w-5 h-5 mr-2" />
             <div>
               <p className="text-sm text-gray-500">End Date</p>
               <p className="font-bold">{groupData.endDate}</p>
@@ -105,7 +105,7 @@ const GroupDetail = () => {
         </div>
         
         <Button 
-          className="w-full bg-jamaica-green hover:bg-jamaica-accent-green"
+          className="w-full rounded-xl bg-smarterpartner-purple hover:bg-smarterpartner-purple/90"
           onClick={handleContribution}
         >
           <ArrowUp className="mr-2 h-4 w-4" /> Make Your Contribution
@@ -169,7 +169,7 @@ const GroupDetail = () => {
                   placeholder="Send a message..." 
                   className="flex-1 rounded-lg border border-gray-300 p-2"
                 />
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" className="rounded-lg">
                   <MessageCircle className="h-4 w-4" />
                 </Button>
               </div>
