@@ -44,7 +44,7 @@ const mockPardnas = [
 ];
 
 const HomeBanner = () => (
-  <div className="bg-gradient-smarterpartner mb-6 rounded-xl p-5 text-white">
+  <div className="bg-gradient-to-tr from-smarterpartner-purple to-smarterpartner-gold mb-6 rounded-xl p-5 text-white">
     <h2 className="text-xl font-bold mb-2">Ready to start saving?</h2>
     <p className="text-white/90 mb-4">Create your first Partner group or join an existing one today!</p>
     <div className="flex gap-3">

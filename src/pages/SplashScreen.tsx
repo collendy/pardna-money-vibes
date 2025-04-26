@@ -15,12 +15,12 @@ const SplashScreen = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
-      <div className="text-center space-y-8">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-white p-4">
+      <div className="text-center space-y-8 flex flex-col items-center">
         <img 
           src="/lovable-uploads/a944be1f-b473-403c-bfde-5601a2ab7f8b.png" 
           alt="SmarterPartner Logo" 
-          className="w-40 h-40 mx-auto"
+          className="w-40 h-40"
         />
         
         <div className="space-y-2">
@@ -34,7 +34,7 @@ const SplashScreen = () => {
           </p>
         </div>
         
-        <div className="w-12 h-12 border-4 border-t-smarterpartner-purple border-r-smarterpartner-gold border-b-smarterpartner-green border-l-transparent rounded-full animate-spin mx-auto"></div>
+        <div className="w-12 h-12 border-4 border-t-smarterpartner-purple border-r-smarterpartner-gold border-b-smarterpartner-green border-l-transparent rounded-full animate-spin"></div>
       </div>
     </div>
   );
