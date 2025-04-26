@@ -41,21 +41,66 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const signIn = async (credentials: { email?: string; phone?: string; password: string }) => {
-    const { error } = await supabase.auth.signInWithPassword(credentials);
+    if (!credentials.email && !credentials.phone) {
+      throw new Error("Either email or phone is required");
+    }
+    
+    let result;
+    
+    if (credentials.email) {
+      // Sign in with email
+      result = await supabase.auth.signInWithPassword({
+        email: credentials.email,
+        password: credentials.password
+      });
+    } else if (credentials.phone) {
+      // Sign in with phone
+      result = await supabase.auth.signInWithPassword({
+        phone: credentials.phone,
+        password: credentials.password
+      });
+    }
+    
+    const { error } = result || { error: new Error("Invalid credentials") };
     if (error) throw error;
+    
     navigate("/");
   };
 
   const signUp = async (credentials: { email?: string; phone?: string; password: string; name: string }) => {
-    const { error } = await supabase.auth.signUp({
-      ...credentials,
-      options: {
-        data: {
-          name: credentials.name,
+    if (!credentials.email && !credentials.phone) {
+      throw new Error("Either email or phone is required");
+    }
+    
+    let result;
+    
+    if (credentials.email) {
+      // Sign up with email
+      result = await supabase.auth.signUp({
+        email: credentials.email,
+        password: credentials.password,
+        options: {
+          data: {
+            name: credentials.name,
+          },
         },
-      },
-    });
+      });
+    } else if (credentials.phone) {
+      // Sign up with phone
+      result = await supabase.auth.signUp({
+        phone: credentials.phone,
+        password: credentials.password,
+        options: {
+          data: {
+            name: credentials.name,
+          },
+        },
+      });
+    }
+    
+    const { error } = result || { error: new Error("Invalid credentials") };
     if (error) throw error;
+    
     navigate("/");
   };
 
