@@ -11,8 +11,9 @@ import CreatePardna from "./pages/CreatePardna";
 import AppLayout from "./components/layout/AppLayout";
 import SplashScreen from "./pages/SplashScreen";
 import Login from "./pages/Login";
-import ForgotPassword from "./components/auth/ForgotPassword";
+import ForgotPassword from "@/components/auth/ForgotPassword";
 import { useAuth } from "@/contexts/AuthContext";
+import Onboarding from "@/pages/Onboarding";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const AuthenticatedRoute = ({ children }: { children: React.ReactNode }) => {
 const AppRoutes = () => (
   <Routes>
     <Route path="/splash" element={<SplashScreen />} />
+    <Route path="/onboarding" element={<AuthenticatedRoute><Onboarding /></AuthenticatedRoute>} />
     <Route path="/login" element={<AuthenticatedRoute><Login /></AuthenticatedRoute>} />
     <Route path="/forgot-password" element={<AuthenticatedRoute><ForgotPassword /></AuthenticatedRoute>} />
     <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>

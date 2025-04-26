@@ -6,9 +6,9 @@ const SplashScreen = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Automatically navigate to login after 2.5 seconds
+    // Navigate to onboarding instead of login after splash
     const timer = setTimeout(() => {
-      navigate("/login");
+      navigate("/onboarding");
     }, 2500);
 
     return () => clearTimeout(timer);
