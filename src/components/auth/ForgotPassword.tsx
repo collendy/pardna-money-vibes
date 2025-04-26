@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -13,27 +12,18 @@ const ForgotPassword = () => {
   const { resetPassword } = useAuth();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [identifier, setIdentifier] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleResetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      if (identifier.includes("@")) {
-        await resetPassword(identifier);
-        toast({
-          title: "Success",
-          description: "Check your email for the password reset link",
-        });
-      } else {
-        // For phone numbers, we show a different message since Supabase handles it differently
-        await resetPassword(identifier);
-        toast({
-          title: "Success",
-          description: "You will receive an SMS with further instructions",
-        });
-      }
+      await resetPassword(email);
+      toast({
+        title: "Success",
+        description: "Check your email for the password reset link",
+      });
     } catch (error: any) {
       toast({
         title: "Error",
@@ -61,20 +51,20 @@ const ForgotPassword = () => {
           <CardHeader className="text-center">
             <h2 className="text-2xl font-bold">Forgot your password?</h2>
             <p className="text-smarterpartner-secondary-text">
-              Enter your email or phone number to reset your password
+              Enter your email to reset your password
             </p>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleResetPassword} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="identifier">Email or Phone Number</Label>
+                <Label htmlFor="email">Email Address</Label>
                 <Input
-                  id="identifier"
-                  type="text"
-                  value={identifier}
-                  onChange={(e) => setIdentifier(e.target.value)}
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
-                  placeholder="Enter your email or phone number"
+                  placeholder="Enter your email address"
                   className="rounded-xl"
                 />
               </div>
@@ -102,4 +92,3 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
-

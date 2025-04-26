@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/components/ui/use-toast";
@@ -182,7 +182,7 @@ const Login = () => {
                   </Button>
                 </form>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="flex justify-center">
                 <p className="mt-4 text-sm text-center text-smarterpartner-secondary-text w-full">
                   By signing up, you agree to our{" "}
                   <Link to="/terms" className="text-smarterpartner-purple hover:underline">
